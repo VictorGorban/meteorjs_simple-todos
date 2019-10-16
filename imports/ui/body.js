@@ -9,6 +9,7 @@ import './body.html';
 
 Template.body.onCreated(function bodyOnCreated() {
 	this.state = new ReactiveDict();
+	Meteor.subscribe('tasks');
 	this.state.set('hideCompleted', true);
 });
 
@@ -23,7 +24,7 @@ Template.body.helpers({
 		return Tasks.find({}, {sort: {createdAt: -1} });
 	},
 	incompleteCount() {
-		return Tasks.find({ checked: { $ne: true } }).count();
+		return Tasks.find({ owner: Meteor.userId(), checked:{ $ne: true } }).count();
 	},
 	isCompletedTasksHidden() {
 		const instance = Template.instance();
@@ -48,12 +49,7 @@ Template.body.events({
 			return;
 
 		// Insert a task into the collection
-		Tasks.insert({
-			text,
-			createdAt: new Date(), // current time
-			owner: Meteor.userId(),
-			username: Meteor.user().username,
-		});
+		Meteor.call('tasks.insert', text);
 
 		// Clear form
 		target.text.value = '';

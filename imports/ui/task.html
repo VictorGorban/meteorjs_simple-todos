@@ -1,9 +1,20 @@
 <template name="task">
-  <li class="{{#if checked}}checked{{/if}}">
-{{#if currentUser}}
+  <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
+    {{#if isOwner}}
     <button class="delete"><b>X</b></button>
-    <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+    <input type="checkbox" checked="{{checked}}" class="toggle-checked"/>
     {{/if}}
+    
+    {{#if isOwner}}
+    <button class="toggle-private">
+      {{#if private}}
+      Private
+      {{else}}
+      Public
+      {{/if}}
+    </button>
+    {{/if}}
+    
     <span class="text">{{text}}  - <strong>{{username}}</strong> at  </span>
   </li>
 </template>
