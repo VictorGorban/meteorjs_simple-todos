@@ -49,6 +49,10 @@ form {
   position: relative;
 }
 
+button:hover{
+  cursor: pointer;
+}
+
 .new-task input {
   box-sizing: border-box;
   padding: 10px 0;

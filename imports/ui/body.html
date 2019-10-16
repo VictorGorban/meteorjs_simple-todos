@@ -2,6 +2,15 @@
 <div class="container">
   <header>
     <h1>Todo List</h1>
+  
+    <form class="new-task">
+      <input hidden type="submit" name="submit" placeholder="Type to add new tasks" value="">
+      <input type="text" name="text" placeholder="Type to add new tasks" value="hey">
+      <input type="text" name="text2" placeholder="Just hit enter and it will trigger the submit event." value="Without submit button, we can only trigger submit only if there will be only one text field.)
+      
+      @endif">
+  
+    </form>
   </header>
   
   <ul>
@@ -12,6 +21,3 @@
 </div>
 </body>
 
-<template name="task">
-  <li>{{text}}<!-- created at <span>{{createdAt}}</span>--></li>
-</template>
